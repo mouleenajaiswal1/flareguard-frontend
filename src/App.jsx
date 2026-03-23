@@ -16,10 +16,18 @@ import LoginPage from './pages/Login'
 function AppShell() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { shop, logout } = useAuth()
+  const { shop, logout, token } = useAuth()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const isPro = shop?.plan === 'pro'
   const path = location.pathname
+  // Only show login if token is explicitly null (logged out)
+  if (token === null) {
+  return (
+    <Routes>
+      <Route path="*" element={<LoginPage />} />
+    </Routes>
+  )
+    }
 
   const userMenu = (
     <TopBar.UserMenu

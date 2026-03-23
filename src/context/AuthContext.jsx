@@ -22,9 +22,9 @@ export function AuthProvider({ children }) {
       localStorage.setItem('fg_token', urlToken)
       return urlToken
     }
-    return localStorage.getItem('fg_token') || null
+    return localStorage.getItem('fg_token') || 'demo'
   })
-  const [shop,    setShop]    = useState(null)
+  const [shop, setShop] = useState(DEMO_SHOP)
   const [loading, setLoading] = useState(false)
 
   // Clean token from URL
